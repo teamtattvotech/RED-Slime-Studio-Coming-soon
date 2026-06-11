@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RED Slime Studio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Modern premium fonts: Orbitron for gaming feel, Inter for clean reading -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --slime-base: #C84249;
+      --slime-shadow: #971B24;
+      --slime-highlight-top: #E78990;
+      --slime-highlight-side: #F3B2BA;
+      --slime-sparkle: #FFDCE0;
+      --slime-dark: #0F0B0C;
+      --accent-red: #FF003C;
+    }
+
+    body {
+      /* Deep black to dark charcoal gradient as requested */
+      background: linear-gradient(135deg, #0a0a0a 0%, #121212 100%);
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .font-gaming {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    /* Faint red radial glow behind center text */
+    .radial-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at center, rgba(255, 0, 60, 0.12) 0%, rgba(10, 10, 10, 0) 50%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Subtle slow floating animation for slime images */
+    .float-left {
+      animation: float-left 6s ease-in-out infinite;
+    }
+
+    .float-right {
+      animation: float-right 7s ease-in-out infinite;
+      animation-delay: 0.5s;
+    }
+
+    @keyframes float-left {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-10px) scale(1.02);
+      }
+    }
+
+    @keyframes float-right {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(10px) scale(1.02);
+      }
+    }
+
+    /* Premium Input Styling */
+    .glow-input {
+      background: rgba(15, 11, 12, 0.8);
+      border: 1px solid rgba(231, 137, 144, 0.2);
+      transition: all 0.3s ease;
+      color: #ffffff;
+    }
+
+    .glow-input:focus {
+      outline: none;
+      border-color: var(--accent-red);
+      box-shadow: 0 0 20px rgba(255, 0, 60, 0.3), inset 0 0 10px rgba(255, 0, 60, 0.1);
+      background: rgba(15, 11, 12, 0.95);
+    }
+
+    .glow-input::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Premium Button Styling */
+    .glow-button {
+      background: linear-gradient(135deg, var(--accent-red) 0%, var(--slime-shadow) 100%);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255, 220, 224, 0.3);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .glow-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
+    }
+
+    .glow-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(255, 0, 60, 0.5), 0 0 15px rgba(243, 178, 186, 0.4);
+      border-color: var(--slime-highlight-top);
+    }
+
+    .glow-button:hover::before {
+      left: 100%;
+    }
+
+    .text-gradient {
+      background: linear-gradient(to right, #ffffff, var(--slime-sparkle), #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .title-glow {
+      text-shadow: 0 0 30px rgba(255, 0, 60, 0.6), 0 0 60px rgba(200, 66, 73, 0.4);
+    }
+  </style>
+</head>
+
+<body class="relative selection:bg-[#FF003C] selection:text-white">
+
+  <!-- Background Ambient Glow -->
+  <div class="radial-glow"></div>
+
+  <!-- Left Slime Asset -->
+  <div
+    class="absolute left-[-20%] sm:left-4 md:left-12 lg:left-24 top-[35%] sm:top-1/2 -translate-y-1/2 z-0 pointer-events-none opacity-20 sm:opacity-90 float-left blur-[4px] sm:blur-none transition-all duration-700">
+    <!-- Using drop shadow to make the slime pop -->
+    <img src="./assets/Jump%20nbg.png" alt=""
+      class="w-64 sm:w-48 md:w-64 lg:w-80 object-contain drop-shadow-[0_20px_30px_rgba(255,0,60,0.3)]">
+  </div>
+
+  <!-- Right Slime Asset -->
+  <div
+    class="absolute right-[-20%] sm:right-4 md:right-12 lg:right-24 top-[65%] sm:top-1/2 -translate-y-1/2 z-0 pointer-events-none opacity-20 sm:opacity-90 float-right blur-[4px] sm:blur-none transition-all duration-700">
+    <img src="./assets/Slime.png" alt=""
+      class="w-64 sm:w-48 md:w-64 lg:w-80 object-contain drop-shadow-[0_20px_30px_rgba(255,0,60,0.3)]">
+  </div>
+
+  <!-- Main Content Wrapper -->
+  <main class="relative z-10 flex-grow flex flex-col items-center justify-center w-full px-6">
+
+    <div class="max-w-4xl w-full text-center flex flex-col items-center">
+
+      <!-- Main Title -->
+      <h1
+        class="font-gaming text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black mb-4 tracking-wider text-transparent bg-clip-text bg-gradient-to-b from-white via-[#F3B2BA] to-[#C84249] title-glow uppercase py-4">
+        RED Slime<br /><span
+          class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-[#FF003C] to-[#971B24]">Studio</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p
+        class="mt-2 text-xs sm:text-sm md:text-base lg:text-lg tracking-[0.3em] font-medium uppercase text-[#E78990] opacity-90 mb-12">
+        Creating Compact Adventures. <span class="text-white font-bold inline-block mt-2 sm:mt-0 ml-0 sm:ml-2">Coming
+          Soon.</span>
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer
+    class="relative z-10 w-full text-center py-6 text-[#F3B2BA]/40 text-xs md:text-sm tracking-widest font-medium">
+    &copy; 2026 RED Slime Studio. All rights reserved.
+  </footer>
+
+</body>
+
+</html>
